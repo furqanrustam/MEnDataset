@@ -3,7 +3,8 @@
 
 https://www.kaggle.com/datasets/furqanrustam118/men-dataset/
 
-Phase 1: Data Collection
+# Phase 1: Data Collection
+
 We construct a comprehensive dataset encompassing benign and malicious traffic from both traditional (non-IoT) and IoT network environments. To achieve this, we employ a two-part strategy.
 
 Part 1: DDoShield-IoT Testbed
