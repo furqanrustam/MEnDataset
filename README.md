@@ -39,3 +39,68 @@ To merge all traffic sources, we employ a Python script running inside a Docker 
 
 To ensure comparability across traffic types, all packets undergo identical feature extraction procedures (detailed in Phase 2: Feature Extraction). This creates a uniform and unbiased dataset representing realistic M-En (Multi-Environment Network) conditions.
 
+
+# Phase 2: Feature Extraction and Processing
+After constructing a comprehensive M-En traffic dataset (described in Phase 1: Data Collection), we extract meaningful features that enable our autoencoder model to effectively identify network anomalies. We also apply necessary preprocessing steps, including normalization and splitting the dataset into training and testing subsets. Below, we first discuss Feature Extraction, followed by Data Processing.
+
+**Feature Extraction**
+Feature extraction is essential because raw network packets alone lack sufficient descriptive power to differentiate benign from malicious behaviors accurately. Therefore, we extract two complementary categories of features from the collected packets:
+
+- General Features
+
+* Statistical Features
+
+**General Features**
+These features capture fundamental properties of each individual packet, reflecting essential attributes of the network communication:
+
+- Timestamp – Packet arrival time for chronological analysis
+
+* Source & Destination IP Addresses – Helps trace traffic origin and destination
+
++ Protocol (TCP/UDP) – Differentiates protocol-specific traffic behavior
+
+- Source & Destination Ports – Indicates application-level communication endpoints
+
+* Packet Size & Payload Size – Describes packet structure and potential anomalous behavior
+
++ TCP Flags (SYN, ACK, FIN, PSH, URG, RST) – Used to detect scanning, flooding, and connection states
+
+- Sequence & Acknowledgment Numbers – Useful in identifying session hijacking or manipulation
+
+* TTL (Time to Live) – Useful for routing behavior analysis
+
+While these features offer granular insights, they are insufficient alone for robust anomaly detection, especially for DDoS attacks which manifest as patterns over time. Hence, we augment them with statistical features aggregated over fixed intervals.
+
+**Statistical Features**
+These features capture temporal network behavior, aggregated over 1-second intervals:
+
+- Packet Count – Total packets within the interval; high counts can indicate flooding
+
+* Destination Port Entropy – Measures randomness in target ports, useful for identifying scanning
+
++ Most Frequent Source/Destination Ports – Highlights potentially targeted services
+
+- Short-lived Connections – Rapid connection terminations, suggesting probes or scans
+
+* Repeated Connection Attempts – Frequent retries may indicate brute-force attacks
+
++ Network Scanning Activity – SYN packets without ACK responses reveal incomplete handshakes
+
+- Flow Rate – Packet throughput rate for traffic load analysis
+
+- Source Entropy – Measures diversity of source IPs to detect distributed attacks
+
+- Connection Errors (RST Flags) – Sudden terminations may signal malicious attempts
+
+- Most Frequent & Abnormal Packet Size Frequency – Helps detect anomalies like uniform or oversized packets
+
+- Sequence Number Variance – Irregularities hint at spoofing or session hijacking
+
+- SYN & ACK Frequencies – Track connection establishment/response behavior
+
+- TCP & UDP Frequencies – Monitors protocol usage imbalance
+
+- Packet Size Variability, Average Packet Size, and Payload Sizes – Describe traffic diversity and structure
+
+
+
