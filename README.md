@@ -1,14 +1,14 @@
 # MEnDataset
 
 
-https://www.kaggle.com/datasets/furqanrustam118/men-dataset/
+
 
 # Phase 1: Data Collection
 
 We construct a comprehensive dataset encompassing benign and malicious traffic from both traditional (non-IoT) and IoT network environments. To achieve this, we employ a two-part strategy.
 
 **Part 1: DDoShield-IoT Testbed**
-We utilize the DDoShield-IoT testbed 1, which integrates Docker containers with NS-3 network simulations. This testbed simulates realistic network conditions by running real binaries within Docker containers over an emulated network topology, enabling the generation of authentic network traffic.
+We utilize the DDoShield-IoT testbed ^1, which integrates Docker containers with NS-3 network simulations. This testbed simulates realistic network conditions by running real binaries within Docker containers over an emulated network topology, enabling the generation of authentic network traffic.
 
 - Benign Traditional Traffic: FTP, HTTP, RTMP streaming
 
@@ -102,5 +102,12 @@ These features capture temporal network behavior, aggregated over 1-second inter
 
 - Packet Size Variability, Average Packet Size, and Payload Sizes – Describe traffic diversity and structure
 
+Data link: https://www.kaggle.com/datasets/furqanrustam118/men-dataset/
+
+- 1. S. De Vivo, I. Obaidat, D. Dai, and P. Liguori, “DDoShield-IoT: A
+testbed for simulating and lightweight detection of IoT botnet DDoS
+attacks,” in Proceedings of the 54th Annual IEEE/IFIP International
+Conference on Dependable Systems and Networks Workshops (DSN-W),
+2024, pp. 1–8.
 
 
